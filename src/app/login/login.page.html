@@ -1,0 +1,39 @@
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div class="auth-wrapp flex-wrap">
+      <div>
+        <figure>
+          <img src="assets/logo.jpg" alt="" />
+        </figure>
+        <h5 class="ion-text-center">اللؤلؤة للزي الشرعي</h5>
+      </div>
+      <div class="auth-center">
+        <form (ngSubmit)="login()">
+          <h5 class="ion-text-center">تسجيل الدخول </h5>
+          <ion-list>
+            <ion-item>
+              <ion-label>رقم الجوال</ion-label>
+              <ion-input [(ngModel)]="loginObj.mobile" name="mobile"></ion-input>
+            </ion-item>
+            <div class="errors" *ngFor="let err of errors">
+              <small *ngIf="err.name == 'mobile'">{{ err.message }}</small>
+            </div>
+            <ion-item>
+              <ion-label>كلمة المرور</ion-label>
+              <ion-input type="password" [(ngModel)]="loginObj.password" name="password"></ion-input>
+            </ion-item>
+            <div class="errors" *ngFor="let err of errors">
+              <small *ngIf="err.name == 'password'">{{ err.message }}</small>
+            </div>
+          </ion-list>
+          <ion-button expand="block" color="tertiary" type="submit">
+            تسجيل الدخول
+          </ion-button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</ion-content>

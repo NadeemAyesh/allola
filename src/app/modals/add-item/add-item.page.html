@@ -1,0 +1,66 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+
+<ion-content>
+  <div class="ion-text-center" style="padding: 15px; ">
+    <h5>إضافة عنصر</h5>
+    <hr>
+  </div>
+
+  <form (ngSubmit)="addItem()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">الكود</ion-label>
+        <ion-input placeholder="dsjkfhsfuefdbfdsuafh465s4f9d8g" [(ngModel)]="item.code" name="code"></ion-input>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'code'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="إختر التصنيف" [(ngModel)]="item.category" name="category">
+          <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'category'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="إختر اللون" [(ngModel)]="item.color" name="color">
+          <ion-select-option *ngFor="let col of colors " [value]="col.id">{{ col.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name === 'color'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="إختر الموديل" [(ngModel)]="item.model" name="model">
+          <ion-select-option *ngFor="let mod of models" [value]="mod.id">{{mod.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'model'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="إختر الحجم" [(ngModel)]="item.size" name="size">
+          <ion-select-option value="SM">SM</ion-select-option>
+          <ion-select-option value="M">M</ion-select-option>
+          <ion-select-option value="L">L</ion-select-option>
+          <ion-select-option value="XL">XL</ion-select-option>
+          <ion-select-option value="XXL">XXL</ion-select-option>
+          <ion-select-option value="XXXL">XXXL</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'size'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-label>فعال</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="item.active" name="active"></ion-toggle>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'active'">{{ err.message }}</small>
+      </div>
+
+    </ion-list>
+    <ion-button expand="block" type="submit">إضافة</ion-button>
+  </form>
+</ion-content>

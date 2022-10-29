@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  base: 'https://markets.senarly.com/api',
+  login: 'login',
+  users: 'admin/users',
+  add: 'add',
+  delete: 'delete',
+  show: 'show',
+  items: 'admin/items',
+  categories: 'admin/categories',
+  colors: 'admin/colors',
+  models: 'admin/models',
+  all: 'all'
 };
 
 /*

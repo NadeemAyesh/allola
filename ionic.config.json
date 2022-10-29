@@ -1,5 +1,8 @@
 {
   "name": "alloloa",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

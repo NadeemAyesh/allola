@@ -1,13 +1,3 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
 
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
@@ -24,3 +14,187 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap');
+
+* {
+  font-family: 'Almarai', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 600;
+}
+
+
+.auth-wrapp {
+  width: 100%;
+  height: 100vh;
+  // background: url(assets/bg2.jpg) no-repeat center / cover;
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  position: relative;
+  flex-direction: column;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(45deg, var(--ion-color-tertiary), #1421b9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 50px 50px;
+  }
+
+  .auth-center {
+    width: 100%;
+    background-color: RGBA(255, 255, 255, 1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgb(3 3 3 / 10%) 2px 3px 45px -3px;
+
+    p {
+      color: #333;
+      text-align: center;
+    }
+
+    position: relative;
+    z-index: 99;
+  }
+
+  figure {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #FFF;
+    overflow: hidden;
+    margin: 0 auto 10px auto !important;
+  }
+
+  div {
+    position: relative;
+    z-index: 9;
+    &>h5 {
+      color: #FFF;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+  }
+}
+
+
+$green: #008744;
+$blue: #0057e7;
+$red: #d62d20;
+$yellow: #ffa700;
+$white: #eee;
+
+// scaling... any units
+$width: 100px;
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+  width: $width;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 40px;
+  transform-origin: center center;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #FFF;
+  border-radius: 50%;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: $red;
+  }
+  40% {
+    stroke: $blue;
+  }
+  66% {
+    stroke: $green;
+  }
+  80%,
+  90% {
+    stroke: $yellow;
+  }
+}
+
+// demo-specific
+body {
+  background-color: $white;
+}
+.showbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5%;
+  z-index: 99;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+
+.errors {
+  color: #d62d20;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
+
+hr {
+  border-top: 1px solid #e3e3e3;
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal>.swiper-pagination-bullets {
+  display: none !important;
+}

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>المستخدمين</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button [routerLink]="'/notifications'">
+        <ion-badge color="danger">1</ion-badge>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="showbox" *ngIf="showLoader">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </div>
+
+
+  <ion-list>
+
+    <ion-item *ngFor="let user of userList">
+      <ion-label (click)="setOpen(true, user.id)">{{ user.username }}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="danger" fill="clear" (click)="deleteUser(user.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="warning" fill="clear" (click)="editUser(user.id)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button fill="outline" expand="block" (click)="showLoaderClick()" *ngIf="this.lastPage !== this.currentPage">تحميل المزيد</ion-button>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="presentModal()"><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+  </ion-fab>
+
+<!-- Show single user -->
+  <ion-modal trigger="open-modal" [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">رجوع</ion-button>
+          </ion-buttons>
+          <ion-title>عرض المستخدم</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list>
+
+          <ion-item>
+            <ion-label>
+              الإسم
+              <strong>{{ currentUser.username }}</strong>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              رقم الجوال
+              <strong>{{ currentUser.mobile }}</strong>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              كلمة المرور
+              <strong>{{ currentUser.password ? currentUser.password : '' }}</strong>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+               نوع المستخدم
+              <strong>{{ currentUser.type }}</strong>
+            </ion-label>
+          </ion-item>
+
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

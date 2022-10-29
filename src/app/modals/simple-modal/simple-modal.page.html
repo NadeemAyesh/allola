@@ -1,0 +1,53 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+
+<ion-content>
+
+  <div class="ion-text-center" style="padding: 15px; ">
+    <h5>إضافة مستخدم</h5>
+    <hr>
+  </div>
+
+  <form (ngSubmit)="addUser()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">اسم المستخدم</ion-label>
+        <ion-input placeholder="" [(ngModel)]="user.username" name="username"></ion-input>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'username'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-label position="floating">الجوال</ion-label>
+        <ion-input placeholder="" [(ngModel)]="user.mobile" name="mobile"></ion-input>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'mobile'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-label position="floating">كلمة المرور</ion-label>
+        <ion-input placeholder="" [(ngModel)]="user.password" name="password"></ion-input>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'password'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-select interface="action-sheet" placeholder="إختر نوع المستخدم" [(ngModel)]="user.type" name="type">
+          <ion-select-option value="admin">مدير</ion-select-option>
+          <ion-select-option value="user">موظف</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'type'">{{ err.message }}</small>
+      </div>
+      <ion-item>
+        <ion-label>فعال</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="user.active" name="active"></ion-toggle>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'active'">{{ err.message }}</small>
+      </div>
+
+    </ion-list>
+    <ion-button expand="block" type="submit">إضافة</ion-button>
+  </form>
+</ion-content>
