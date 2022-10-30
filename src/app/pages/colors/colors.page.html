@@ -1,0 +1,26 @@
+<app-header [title]="'الألوان'"></app-header>
+
+<ion-content>
+  <div *ngIf="colors.length <= 0">
+    <ion-img src="assets/no-items.png"></ion-img>
+    <p class="ion-text-center">لا توجد عناصر</p>
+  </div>
+
+  <ion-list *ngIf="colors.length > 0">
+    <ion-item *ngFor="let cat of colors">
+      <ion-label>{{ cat.name }}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="danger" fill="clear" (click)="delete(cat.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="warning" fill="clear">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="'/add-color'"><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,32 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>إضافة تصنيف</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addCategory()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">الإسم</ion-label>
+        <ion-input placeholder="إسم التصنيف" [(ngModel)]="item.name" name="name"></ion-input>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'name'">{{ err.message }}</small>
+      </div>
+
+      <ion-item>
+        <ion-label>فعال</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="item.active" name="active"></ion-toggle>
+      </ion-item>
+      <div class="errors" *ngFor="let err of errors">
+        <small *ngIf="err.name == 'active'">{{ err.message }}</small>
+      </div>
+    </ion-list>
+    <ion-button color="primary" expand="block" type="submit">إضافة</ion-button>
+  </form>
+</ion-content>

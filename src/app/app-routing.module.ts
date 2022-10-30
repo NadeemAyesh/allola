@@ -41,6 +41,22 @@ const routes: Routes = [
     path: 'add-item',
     loadChildren: () => import('./modals/add-item/add-item.module').then( m => m.AddItemPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
+  },
+  {
+    path: 'add-category',
+    loadChildren: () => import('./pages/add-category/add-category.module').then( m => m.AddCategoryPageModule)
+  },
+  {
+    path: 'colors',
+    loadChildren: () => import('./pages/colors/colors.module').then( m => m.ColorsPageModule)
+  },
+  {
+    path: 'add-color',
+    loadChildren: () => import('./pages/add-color/add-color.module').then( m => m.AddColorPageModule)
   }
 ];
 

@@ -1,0 +1,36 @@
+<app-header [title]="'الأصناف'"></app-header>
+
+<ion-content>
+
+  <div class="showbox" *ngIf="showLoader">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </div>
+
+  <div *ngIf="categories.length <= 0">
+    <ion-img src="assets/no-items.png"></ion-img>
+    <p class="ion-text-center">لا توجد عناصر</p>
+  </div>
+
+  <ion-list *ngIf="categories.length > 0">
+    <ion-item *ngFor="let cat of categories">
+      <ion-label>{{ cat.name }}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="danger" fill="clear" (click)="delete(cat.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="warning" fill="clear">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="'/add-category'"><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+  </ion-fab>
+</ion-content>

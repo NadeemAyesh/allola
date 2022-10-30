@@ -13,6 +13,8 @@ export class GeneralService {
   $userAdded: EventEmitter<any> = new EventEmitter();
   $itemAdded: EventEmitter<any> = new EventEmitter();
   $itemDeleted: EventEmitter<any> = new EventEmitter();
+  $categoryAdded: EventEmitter<any> = new EventEmitter();
+  $colorAdded: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient, private cookie: CookieService) {
     this.token = JSON.parse(this.cookie.get('user')).token;
@@ -90,5 +92,25 @@ export class GeneralService {
   deleteItem(itemId: any) {
     const headers = new HttpHeaders().set('token', this.token);
     return this.http.post(environment.base + '/' + environment.items + '/' + environment.delete + '/' + itemId, {}, { headers });
+  }
+
+  deleteCategory(catId: any) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.categories + '/' + environment.delete + '/' + catId, {}, { headers });
+  }
+
+  deleteColor(catId: any) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.colors + '/' + environment.delete + '/' + catId, {}, { headers });
+  }
+
+  addCategory(item: any) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.categories + '/' + environment.add, item, { headers });
+  }
+
+  addColor(item: any) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.colors + '/' + environment.add, item, { headers });
   }
 }

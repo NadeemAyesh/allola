@@ -38,6 +38,18 @@
               <ion-label>العناصر</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item routerDirection="root" [routerLink]="'categories'" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon name="file-tray-full-outline"></ion-icon>
+              <ion-label>الأصناف</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" >
+            <ion-item routerDirection="root" [routerLink]="'colors'" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon name="color-palette-outline"></ion-icon>
+              <ion-label>الألوان</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
 
 
