@@ -40,6 +40,11 @@ export class GeneralService {
     return this.http.post(environment.base + '/' + environment.users + '/' + environment.add, user, { headers });
   }
 
+  updateUser(user: any, id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.users + '/' + environment.update + '/' + id, user, { headers });
+  }
+
   deleteUser(id: number) {
     const headers = new HttpHeaders().set('token', this.token);
     return this.http.post(environment.base + '/' + environment.users + '/' + environment.delete + '/' + id, { }, { headers });
@@ -113,4 +118,6 @@ export class GeneralService {
     const headers = new HttpHeaders().set('token', this.token);
     return this.http.post(environment.base + '/' + environment.colors + '/' + environment.add, item, { headers });
   }
+
+
 }

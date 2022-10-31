@@ -1,12 +1,7 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<app-header [title]="'تعديل المستخدم'"></app-header>
 
 <ion-content>
-
-  <div class="ion-text-center" style="padding: 15px; ">
-    <h5>إضافة مستخدم</h5>
-    <hr>
-  </div>
-
   <form (ngSubmit)="addUser(myForm)" #myForm="ngForm">
     <ion-list>
       <ion-item>

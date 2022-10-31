@@ -98,7 +98,7 @@ export class UsersPage implements OnInit {
   }
 
   editUser(id: number) {
-
+    this.presentModal();
   }
 
   handleRefresh(event) {

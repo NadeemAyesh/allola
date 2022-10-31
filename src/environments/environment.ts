@@ -14,7 +14,8 @@ export const environment = {
   categories: 'admin/categories',
   colors: 'admin/colors',
   models: 'admin/models',
-  all: 'all'
+  all: 'all',
+  update: 'edit'
 };
 
 /*

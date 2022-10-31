@@ -13,8 +13,8 @@ import { AuthService } from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   loginObj: { mobile: string; password: string } = {
-    mobile: '012541238',
-    password: '001225441'
+    mobile: '',
+    password: ''
   };
 
   errors: {

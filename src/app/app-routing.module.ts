@@ -57,7 +57,12 @@ const routes: Routes = [
   {
     path: 'add-color',
     loadChildren: () => import('./pages/add-color/add-color.module').then( m => m.AddColorPageModule)
+  },
+  {
+    path: 'update-user/:id',
+    loadChildren: () => import('./pages/update-user/update-user.module').then( m => m.UpdateUserPageModule)
   }
+
 ];
 
 @NgModule({
