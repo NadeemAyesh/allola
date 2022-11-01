@@ -9,6 +9,19 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class ColorsPage implements OnInit {
   colors: any = [];
+  showModal = false;
+
+  editColor: {
+    name: string;
+    active: number;
+    id: number;
+  } = {
+    name: '',
+    active: 1,
+    id: 0
+  };
+
+  errors: any = [];
 
   constructor(private general: GeneralService, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     this.general.$colorAdded.subscribe(data => {
@@ -60,6 +73,43 @@ export class ColorsPage implements OnInit {
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
+  }
+
+  openModal(id: number) {
+    this.errors = [];
+    // editCategory
+    this.general.showColor(id).subscribe((data: any) => {
+      if(data.code === 1) {
+        this.editColor = data.data;
+        this.showModal = true;
+      }
+    }, err => {
+      this.showModal = false;
+    });
+  }
+
+  async updateColor() {
+    const loading = await this.loadingCtrl.create({
+      message: '',
+    });
+    await loading.present();
+    this.general.updateColor(this.editColor, this.editColor.id).subscribe(async (data: any) => {
+      if(data.code === 1) {
+        const alert = await this.alertCtrl.create({
+          header: 'شكراً لك',
+          message: 'تم تعديل اللون بنجاح',
+          buttons: ['تم'],
+        });
+        this.general.$colorAdded.emit(data);
+        await alert.present();
+        this.showModal = false;
+      } else {
+        this.errors = data.messages;
+      }
+      await loading.dismiss();
+    }, err => {
+      loading.dismiss();
+    });
   }
 
 }

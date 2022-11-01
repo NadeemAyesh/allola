@@ -16,9 +16,13 @@ export class ItemsPage implements OnInit {
   lastPage = 1;
   categories: any = [];
   slideOpts = {
-    initialSlide: 3.2,
-    speed: 400,
-    dots: false
+    slidesPerView: 2.5,
+    initialSlide: 4,
+    dots: false,
+    spaceBetween: 10,
+    speed: 1400,
+    // width: 'auto'
+    autoWidth: true
   };
 
   constructor(private general: GeneralService,  private loadingCtrl: LoadingController, private modalCtrl: ModalController) {
@@ -40,7 +44,7 @@ export class ItemsPage implements OnInit {
     const loading = await this.loadingCtrl.create({
       message: '',
     });
-    loading.present();
+    await loading.present();
     this.general.getItems(page ?? page).subscribe((data: any) => {
       if(data.code === 1) {
         this.itemsList = data.data.data;
@@ -88,6 +92,22 @@ export class ItemsPage implements OnInit {
       if(data.code === 1) {
         this.categories = data.data;
       }
+    });
+  }
+
+  async searchWithCategory(id: number) {
+    const loading = await this.loadingCtrl.create({
+      message: '',
+    });
+    await loading.present();
+    this.general.search(id).subscribe((data: any) => {
+      if(data.code === 1) {
+        this.itemsList = data.data;
+      }
+      loading.dismiss();
+    }, err => {
+      this.showLoader = false;
+      loading.dismiss();
     });
   }
 

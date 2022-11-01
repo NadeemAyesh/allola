@@ -10,8 +10,11 @@
     <p>ترتيب حسب التصنيف:</p>
   </div>
   <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-button color="primary" fill="outline" (click)="getItems()" expand="block" style="width: 100%;">الكل</ion-button>
+    </ion-slide>
     <ion-slide *ngFor="let cat of categories">
-      <ion-button color="primary" fill="outline">{{ cat.name }}</ion-button>
+      <ion-button color="primary" fill="outline" (click)="searchWithCategory(cat.id)" expand="block" style="width: 100%;">{{ cat.name }}</ion-button>
     </ion-slide>
   </ion-slides>
   <hr>

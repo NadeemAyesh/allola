@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
-  selector: 'app-add-item',
-  templateUrl: './add-item.page.html',
-  styleUrls: ['./add-item.page.scss'],
+  selector: 'app-update-item',
+  templateUrl: './update-item.page.html',
+  styleUrls: ['./update-item.page.scss'],
 })
-export class AddItemPage implements OnInit {
-
+export class UpdateItemPage implements OnInit {
   item = {
     code: '',
     category: 0,
@@ -24,12 +24,24 @@ export class AddItemPage implements OnInit {
   colors: any = [];
   models: any = [];
 
-  constructor(private general: GeneralService, private alertController: AlertController, private loadingCtrl: LoadingController) { }
+  id: number;
 
-  ngOnInit() {
+  constructor(private general: GeneralService, private alertController: AlertController, private loadingCtrl: LoadingController, private router: ActivatedRoute) {
+
     this.getCategories();
     this.getColors();
     this.getModels();
+
+    this.id = this.router.snapshot.params['id'];
+    // console.log(id);
+    this.general.showItem(this.id).subscribe((data: any) => {
+      if(data.code === 1) {
+        this.item = data.data;
+      }
+    });
+  }
+
+  ngOnInit() {
   }
 
   getCategories() {
@@ -56,23 +68,21 @@ export class AddItemPage implements OnInit {
     });
   }
 
-  async addItem() {
+  async updateItem() {
     const loading = await this.loadingCtrl.create({
       message: '',
     });
     loading.present();
-    this.general.addItem(this.item).subscribe(async (data: any) => {
+    this.general.updateItem(this.item, this.id).subscribe(async (data: any) => {
       if(data.code === 1) {
         const alert = await this.alertController.create({
           header: 'شكراً لك',
-          message: 'تم إضافة العنصر بنجاح',
+          message: 'تم إضافة المستخدم بنجاح',
           buttons: ['تم'],
         });
 
         alert.present();
         this.general.$itemAdded.emit(data);
-      } else {
-        this.errors = data.messages;
       }
       loading.dismiss();
     }, err => {

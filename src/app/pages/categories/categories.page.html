@@ -22,7 +22,7 @@
         <ion-button color="danger" fill="clear" (click)="delete(cat.id)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
-        <ion-button color="warning" fill="clear">
+        <ion-button color="warning" fill="clear" (click)="openModal(cat.id)">
           <ion-icon name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -33,4 +33,35 @@
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="'/add-category'"><ion-icon name="add-outline"></ion-icon></ion-fab-button>
   </ion-fab>
+
+  <div id="modal-container" *ngIf="showModal" [class.five]="showModal">
+    <div class="modal-background">
+      <div class="modal ion-padding">
+        <div class="d-flex">
+          <ion-button (click)="showModal = !showModal" fill="clear" color="danger"><ion-icon name="close-outline"></ion-icon></ion-button>
+          <ion-title style="flex-grow: 1; text-align: center">تعديل التصنيف</ion-title>
+        </div>
+
+        <form (ngSubmit)="updateCategory()">
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">الإسم</ion-label>
+              <ion-input placeholder="إسم التصنيف" [(ngModel)]="editCategory.name" name="name"></ion-input>
+            </ion-item>
+            <div class="errors" *ngFor="let err of errors">
+              <small *ngIf="err.name == 'code'">{{ err.message }}</small>
+            </div>
+            <ion-item>
+              <ion-label>فعال</ion-label>
+              <ion-toggle slot="end" [(ngModel)]="editCategory.active" name="active"></ion-toggle>
+            </ion-item>
+            <div class="errors" *ngFor="let err of errors">
+              <small *ngIf="err.name == 'active'">{{ err.message }}</small>
+            </div>
+          </ion-list>
+          <ion-button expand="block" type="submit">تعديل</ion-button>
+        </form>
+      </div>
+    </div>
+  </div>
 </ion-content>

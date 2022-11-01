@@ -55,6 +55,26 @@ export class GeneralService {
     return this.http.get(environment.base + '/' + environment.users + '/' + environment.show + '/' + id, { headers });
   }
 
+  showItem(id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.get(environment.base + '/' + environment.items + '/' + environment.show + '/' + id, { headers });
+  }
+
+  showItemAsIds(id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.get(environment.base + '/' + environment.items + '/' + environment.show, { headers });
+  }
+
+  showCategory(id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.get(environment.base + '/' + environment.categories + '/' + environment.show + '/' + id, { headers });
+  }
+
+  showColor(id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.get(environment.base + '/' + environment.colors + '/' + environment.show + '/' + id, { headers });
+  }
+
   getItems(page?: number) {
     const headers = new HttpHeaders().set('token', this.token);
     if(page) {
@@ -89,9 +109,31 @@ export class GeneralService {
     });
   }
 
+  search(category: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.get(environment.base + '/' + environment.items + '/' + environment.all + '?category=' + category, {
+      headers
+    });
+  }
+
   addItem(item: any) {
     const headers = new HttpHeaders().set('token', this.token);
     return this.http.post(environment.base + '/' + environment.items + '/' + environment.add, item, { headers });
+  }
+
+  updateItem(item: any, id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.items + '/' + environment.update + '/' + id, item, { headers });
+  }
+
+  updateCategory(item: any, id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.categories + '/' + environment.update + '/' + id, item, { headers });
+  }
+
+  updateColor(item: any, id: number) {
+    const headers = new HttpHeaders().set('token', this.token);
+    return this.http.post(environment.base + '/' + environment.colors + '/' + environment.update + '/' + id, item, { headers });
   }
 
   deleteItem(itemId: any) {
