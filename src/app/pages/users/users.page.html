@@ -23,7 +23,7 @@
         <ion-button color="danger" fill="clear" (click)="deleteUser(user.id)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
-        <ion-button color="warning" fill="clear" (click)="editUser(user.id)">
+        <ion-button color="warning" fill="clear" [routerLink]="'/update-user/' + user.id">
           <ion-icon name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>

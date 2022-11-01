@@ -14,7 +14,7 @@
           <ion-list>
             <ion-item>
               <ion-label>رقم الجوال</ion-label>
-              <ion-input [(ngModel)]="loginObj.mobile" name="mobile"></ion-input>
+              <ion-input [(ngModel)]="loginObj.mobile" name="mobile" type="number"></ion-input>
             </ion-item>
             <div class="errors" *ngFor="let err of errors">
               <small *ngIf="err.name == 'mobile'">{{ err.message }}</small>
